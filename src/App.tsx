@@ -17,6 +17,9 @@ type IconName =
   | 'course'
   | 'career'
   | 'check'
+  | 'location'
+  | 'phone'
+  | 'mail'
 
 const reserveLink =
   'https://docs.google.com/forms/d/e/1FAIpQLSeJCiwP1G41hdjuoJRPRguhPjE3H_rsOoGJw_gmQEz8KGPZKw/viewform?usp=preview'
@@ -91,6 +94,37 @@ const audience: Array<{ text: string; icon: IconName }> = [
   { text: 'Career switchers trying to enter digital work.', icon: 'switch' },
   { text: 'Online course learners who still do not feel confident.', icon: 'course' },
   { text: 'Anyone trying to choose a digital career that truly fits.', icon: 'career' },
+]
+
+const footerContacts: Array<{
+  label: string
+  value: string
+  href?: string
+  icon: IconName
+}> = [
+  {
+    label: 'Visit us',
+    value: '276b Corporation Drive, Dolphin Estate, Ikoyi Lagos.',
+    icon: 'location',
+  },
+  {
+    label: 'Call',
+    value: '+234 806 897 9309',
+    href: 'tel:+2348068979309',
+    icon: 'phone',
+  },
+  {
+    label: 'Email',
+    value: 'fadekemi@wdc.com.ng',
+    href: 'mailto:fadekemi@wdc.com.ng',
+    icon: 'mail',
+  },
+  {
+    label: 'Training enquiries',
+    value: 'trainings@wdc.com.ng',
+    href: 'mailto:trainings@wdc.com.ng',
+    icon: 'mail',
+  },
 ]
 
 function Icon({ name }: { name: IconName }) {
@@ -202,6 +236,23 @@ function Icon({ name }: { name: IconName }) {
       <>
         <circle cx="12" cy="12" r="8" />
         <path d="M8.5 12.5l2.2 2.2 4.8-5.2" />
+      </>
+    ),
+    location: (
+      <>
+        <path d="M12 21s7-5.2 7-11a7 7 0 10-14 0c0 5.8 7 11 7 11z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </>
+    ),
+    phone: (
+      <>
+        <path d="M6.6 4.5l2.1-.9 2.2 5-1.7 1.2a10.6 10.6 0 005 5l1.2-1.7 5 2.2-.9 2.1c-.4 1-1.5 1.6-2.6 1.4C10.5 17.7 6.3 13.5 5.2 7.1 5 6 5.6 4.9 6.6 4.5z" />
+      </>
+    ),
+    mail: (
+      <>
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M4 7l8 6 8-6" />
       </>
     ),
   }
@@ -318,7 +369,16 @@ function App() {
 
       <section className="blueprint" id="blueprint" aria-labelledby="blueprint-title">
         <div className="blueprint-image">
-          <img src="/students_image1.png" alt="Wild Fusion Digital Centre students" />
+          <img
+            className="blueprint-photo-main"
+            src="/students_image1.jpg"
+            alt="Wild Fusion Digital Centre students"
+          />
+          <img
+            className="blueprint-photo-secondary"
+            src="/student_image2.png"
+            alt="Wild Fusion Digital Centre students in class"
+          />
         </div>
 
         <div className="blueprint-content">
@@ -393,8 +453,39 @@ function App() {
       </section>
 
       <footer className="footer">
-        <img src="/company_logo.png" alt="Wild Fusion Digital Centre" />
-        <p>Hosted by Wild Fusion Digital Centre.</p>
+        <div className="footer-brand">
+          <img src="/company_logo.png" alt="Wild Fusion Digital Centre" />
+          <p>
+            Helping learners build practical digital skills, credible portfolios, and
+            stronger career confidence.
+          </p>
+          <a className="footer-cta" href={reserveLink} target="_blank" rel="noreferrer">
+            Reserve a webinar seat
+          </a>
+        </div>
+
+        <address className="footer-contact" aria-label="Wild Fusion Digital Centre contact details">
+          {footerContacts.map((contact) => {
+            const content = (
+              <>
+                <Icon name={contact.icon} />
+                <span>
+                  <strong>{contact.label}</strong>
+                  {contact.value}
+                </span>
+              </>
+            )
+
+            return contact.href ? (
+              <a key={contact.value} href={contact.href}>
+                {content}
+              </a>
+            ) : (
+              <p key={contact.value}>{content}</p>
+            )
+          })}
+        </address>
+
       </footer>
 
       <a className="mobile-cta" href={reserveLink} target="_blank" rel="noreferrer">
