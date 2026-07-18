@@ -376,7 +376,7 @@ function App() {
           />
           <img
             className="blueprint-photo-overlay"
-            src="/students_image1.jpg"
+            src="/student_image4.jpg"
             alt="Wild Fusion Digital Centre logo"
           />
           <img
