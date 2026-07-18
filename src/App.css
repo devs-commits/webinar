@@ -549,7 +549,8 @@
 }
 
 .blueprint-photo-main,
-.blueprint-photo-secondary {
+.blueprint-photo-secondary,
+.blueprint-photo-overlay {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -567,12 +568,36 @@
 }
 
 .blueprint-photo-secondary {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2;
   width: min(62%, 360px);
   height: 190px;
-  justify-self: end;
-  margin-top: -94px;
+  max-width: 360px;
+  margin-top: 0;
   object-position: center;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  transform: rotate(-6deg);
+}
+
+.blueprint-photo-overlay {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 2;
+  width: min(62%, 360px);
+  height: 190px;
+  max-width: 360px;
+  max-height: 190px;
+  padding: 0;
+  object-fit: cover;
+  border-radius: 14px;
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.26);
+  transform: rotate(-6deg);
+  pointer-events: none;
 }
 
 .blueprint:hover .blueprint-photo-main {
@@ -580,7 +605,11 @@
 }
 
 .blueprint:hover .blueprint-photo-secondary {
-  transform: translateY(-6px);
+  transform: rotate(-6deg) translateY(-6px);
+}
+
+.blueprint:hover .blueprint-photo-overlay {
+  transform: rotate(-4deg) translateY(-4px);
 }
 
 .blueprint-content {
@@ -1120,10 +1149,13 @@
   }
 
   .blueprint-photo-secondary {
-    width: min(58%, 300px);
+    width: min(56%, 280px);
     height: auto;
+    max-width: 280px;
     aspect-ratio: 4 / 3;
-    margin-top: -64px;
+    right: 16px;
+    bottom: 16px;
+    transform: rotate(-4deg);
   }
 
   .blueprint-content {
@@ -1178,6 +1210,16 @@
   .footer-contact a,
   .footer-contact p {
     min-height: auto;
+  }
+}
+
+@media (max-width: 1159px) {
+  .blueprint-photo-overlay {
+    display: none;
+  }
+
+  .blueprint-photo-secondary {
+    display: none;
   }
 }
 
@@ -1250,6 +1292,18 @@
 
   .audience-grid article {
     min-height: auto;
+  }
+
+  .blueprint-image {
+    padding: 16px 16px 0;
+  }
+
+  .blueprint-photo-secondary {
+    width: min(64%, 220px);
+    max-width: 220px;
+    right: 10px;
+    bottom: 10px;
+    transform: rotate(-3deg);
   }
 
   .footer-brand img {
