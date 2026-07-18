@@ -569,7 +569,7 @@
 
 .blueprint-photo-secondary {
   position: absolute;
-  right: 24px;
+  left: 24px;
   bottom: 24px;
   z-index: 2;
   width: min(62%, 360px);
@@ -578,7 +578,7 @@
   margin-top: 0;
   object-position: center;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
-  transform: rotate(-6deg);
+  transform: rotate(6deg);
 }
 
 .blueprint-photo-overlay {
@@ -605,7 +605,7 @@
 }
 
 .blueprint:hover .blueprint-photo-secondary {
-  transform: rotate(-6deg) translateY(-6px);
+  transform: rotate(6deg) translateY(-6px);
 }
 
 .blueprint:hover .blueprint-photo-overlay {
